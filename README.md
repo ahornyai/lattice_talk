@@ -1,0 +1,25 @@
+# TODO
+- title
+- whoami
+- fahrplan
+- the defition of a lattice
+- motivation
+- part 1. - theory:
+  - problems on lattices (SVP, CVP, approximate versions)
+  - LLL algorithm / visualization
+  - solving CVP using LLL
+- part 2. - practice
+  - LLL in sage
+  - common problems
+    - knapsack (example: hashmaster-9000 from ddc-nationals-2024)
+    - ecdsa biased nonce (HNP)
+    - RSA with partial info (Coppersmith)
+    - solving underdetermined linear equations (Invention - openECSC 2024 - Round 2)
+- part 3. - basics of LWE
+  - primal attack on LWE
+
+# used sources
+- https://ur4ndom.dev/static/files/latticetraining/practical_lattice_reductions.pdf
+- https://theblupper.github.io/blog/posts/lattices/
+- https://kel.bz/post/lll/
+- https://www.math.elte.hu/thesisupload/thesisfiles/2024bsc_alkmat3y-sl45k6.pdf
