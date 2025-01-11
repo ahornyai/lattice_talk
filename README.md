@@ -18,8 +18,10 @@
 - part 3. - basics of LWE
   - primal attack on LWE
 
-# used sources
+# References
 - https://ur4ndom.dev/static/files/latticetraining/practical_lattice_reductions.pdf
 - https://theblupper.github.io/blog/posts/lattices/
 - https://kel.bz/post/lll/
 - https://www.math.elte.hu/thesisupload/thesisfiles/2024bsc_alkmat3y-sl45k6.pdf
+- https://people.csail.mit.edu/vinodv/COURSES/CSC2414-F11/L4.pdf
+- https://escholarship.org/content/qt4zt7x45z/qt4zt7x45z.pdf?t=ml518a
