@@ -55,11 +55,31 @@ class SmallLinearSystem(Slide):
         self.play(FadeIn(success_img_1, scale=0.5, lag_ratio=0.1))
         self.next_slide()
 
-        demo_time_invention = Text("openECSC 2024 - Invention").set_color(YELLOW)
+        irisctf_title = Text("IrisCTF2025 - knutsacque").set_color(YELLOW)
 
         self.play(FadeOut(success_img_1))
         self.play(FadeOut(B_sym, eq_3_subst))
-        self.play(Write(demo_time_invention))
+        self.play(Write(irisctf_title))
         self.next_slide()
 
-        self.play(demo_time_invention.animate.move_to(2*UP))
+        irisctf_info = BulletedList(
+            "m = [(flag[0] + flag[1] * i + flag[2] * j + flag[3] * k), $\\ldots$]",
+            "A = [$\\mathbf{a_1}, \\mathbf{a_2}, .., \\mathbf{a_n}$] where $\\mathbf{a_i} \\in \\mathbb{H}$",
+            "$s = m_1 \\mathbf{a_1} + m_2 \\mathbf{a_2} + \\ldots + m_n \\mathbf{a_n}$",
+            "What's m?"
+        ).scale(0.75)
+
+        self.play(irisctf_title.animate.move_to(2*UP))
+        self.play(LaggedStartMap(FadeIn, irisctf_info, shift=0.5 * DOWN, lag_ratio=0.25))
+        self.next_slide()
+
+        quaternion_example = Tex("$a_1 = a + b*i + c*j + d*k$")
+        quat_arrow = Arrow(start=LEFT, end=RIGHT)
+        quat_repr = Matrix(np.array([["a","b","c","d"],["-b","a","-d","c"],["-c","d","a","-b"],["-d","-c","b","a"]])).next_to(quat_arrow, RIGHT)
+
+        self.play(FadeOut(irisctf_info))
+        self.play(Write(quaternion_example))
+        self.play(quaternion_example.animate.move_to(4*LEFT))
+        self.play(GrowArrow(quat_arrow))
+        self.play(FadeIn(quat_repr))
+        self.next_slide()

@@ -28,3 +28,6 @@
 - https://escholarship.org/content/qt4zt7x45z/qt4zt7x45z.pdf?t=ml518a
 - https://www.di.ens.fr/~pnguyen/SLIDES/SlidesLuminy2010.pdf
 - https://magicfrank00.github.io/writeups/posts/lll-to-solve-linear-equations/
+
+# Challenges
+- https://github.com/ECSC2024/openECSC-2024/blob/main/round-2/crypto01/
