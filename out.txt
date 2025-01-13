@@ -1,0 +1,17 @@
+=== LLL k=1 ===
+GS: (2/5, 9/5) (-27/85, 6/85)
+checking size condition: 1, 0 22/17
+updated vecs (2/5, 9/5) (-1/5, 3/5)
+updated gs (2/5, 9/5) (-27/85, 6/85)
+calculating Lovasz-condition mu((1, 0)) = 5/17 | 9/85 >= (0.990000000000000 - 25/289) * (17/5)
+II. swap
+=== LLL k=1 ===
+GS: (-1/5, 3/5) (9/10, 3/10)
+checking size condition: 1, 0 5/2
+updated vecs (-1/5, 3/5) (1, 0)
+updated gs (-1/5, 3/5) (9/10, 3/10)
+calculating Lovasz-condition mu((1, 0)) = -1/2 | 9/10 >= (0.990000000000000 - 1/4) * (2/5)
+I. Lovasz-Condition true
+==== DONE ====
+[-1/5  3/5]
+[   1    0]

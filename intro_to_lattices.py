@@ -216,7 +216,7 @@ class LatticeProblems(Slide):
         self.next_slide()
 
         algorithms_table = MobjectTable([
-            [Tex("LLL (Lenstra-Lenstra-Lovász)"), Tex("Polynomial time, $\\lVert \\mathbf{b_1'} \\rVert \\leq 2^{\\frac{n-1}{2}} \\lambda_1(\\mathcal{L})$")],
+            [Tex("LLL (Lenstra-Lenstra-Lovász)"), Tex("Polynomial time, $\\lVert \\mathbf{b_1'} \\rVert \\leq (\\frac{2}{\\sqrt{4\\delta - 1}})^{\\frac{n-1}{2}} \\lambda_1(\\mathcal{L})$")],
             [Tex("HKZ (Hermite-Korkine-Zolotarev)"), Tex("Exponential time, $\\lVert \\mathbf{b_1'} \\rVert = \\lambda_1(\\mathcal{L})$")],
             [Tex("BKZ"), Tex("Parameterized by block size $\\beta$")]
         ], include_outer_lines=True).scale(0.75).next_to(algorithms_title, 2*DOWN)

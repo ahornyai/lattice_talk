@@ -6,10 +6,11 @@
 - motivation
 - part 1. - theory:
   - problems on lattices (SVP, CVP, approximate versions)
-  - LLL algorithm / visualization
-  - solving CVP using LLL
+  - LLL algorithm
+  - LLL visualization
 - part 2. - practice
   - LLL in sage
+  - solving CVP using LLL
   - common problems
     - knapsack (example: hashmaster-9000 from ddc-nationals-2024)
     - ecdsa biased nonce (HNP)
@@ -25,3 +26,5 @@
 - https://www.math.elte.hu/thesisupload/thesisfiles/2024bsc_alkmat3y-sl45k6.pdf
 - https://people.csail.mit.edu/vinodv/COURSES/CSC2414-F11/L4.pdf
 - https://escholarship.org/content/qt4zt7x45z/qt4zt7x45z.pdf?t=ml518a
+- https://www.di.ens.fr/~pnguyen/SLIDES/SlidesLuminy2010.pdf
+- https://magicfrank00.github.io/writeups/posts/lll-to-solve-linear-equations/
