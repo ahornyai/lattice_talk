@@ -221,4 +221,27 @@ class LLLVisualization(Slide):
         self.play(Transform(k_label, new_k_label), Write(success))
         self.next_slide()
         
+        # Only show the reduced vectors
+        # clear updaters
+        mu_brace.clear_updaters()
+        mu_label.clear_updaters()
+
+        self.play(FadeOut(q0, q1, mu_brace, mu_label, mu_vec, projection_vec, lovasz_simple_2))
+        self.next_slide()
+
+        # show lattice points
+        self.play(FadeOut(q0_label, q0_matrix, q1_label, q1_matrix, b1_label, b1_matrix, b0_label, b0_matrix, k_label, success))
+        dots = []
+        lll_reduced = [
+            np.array((-0.2, 0.6, 0)),
+            np.array((1, 0, 0))
+        ]
+
+        for i in range(-20, 20):
+            for j in range(-20, 20):
+                dots.append(Dot(i*lll_reduced[0] + j*lll_reduced[1]))    
+        
+        self.play(LaggedStartMap(FadeIn, dots, shift=0.5 * DOWN, lag_ratio=0.01))
+        self.next_slide()
+
         self.play(FadeIn(sage_img, scale=0.5))
