@@ -126,6 +126,25 @@ class IrisCTFSolution(Slide):
             ["-a_{1,2}", "-a_{2,2}", "-a_{3,2}", "-a_{4,2}", "0", "0", "1", "\\dots", "0"],
             ["\\vdots", "\\vdots", "\\vdots", "\\vdots", "\\vdots", "\\vdots", "\\vdots", "\\ddots", "\\vdots"],
             ["-a_{1,n}", "-a_{2,n}", "-a_{3,n}", "-a_{4,n}", "0", "0", "0", "\\dots", "1"],
-        ]).scale(0.75).next_to(eq_4, DOWN)
+        ], h_buff=1.8).scale(0.75).next_to(eq_4, DOWN)
 
         self.play(FadeIn(basis_matrix))
+        self.next_slide()
+
+        weight_basis_matrix = Matrix([
+            ["W s_0", "W s_1", "W s_2", "W s_3", "W", "0", "0", "\\dots", "0"],
+            ["-W a_{1,1}", "-W a_{2,1}", "-W a_{3,1}", "-W a_{4,1}", "0", "1", "0", "\\dots", "0"],
+            ["-W a_{1,2}", "-W a_{2,2}", "-W a_{3,2}", "-W a_{4,2}", "0", "0", "1", "\\dots", "0"],
+            ["\\vdots", "\\vdots", "\\vdots", "\\vdots", "\\vdots", "\\vdots", "\\vdots", "\\ddots", "\\vdots"],
+            ["-W a_{1,n}", "-W a_{2,n}", "-W a_{3,n}", "-W a_{4,n}", "0", "0", "0", "\\dots", "1"],
+        ], h_buff=1.8).scale(0.75)
+        
+        weight_label = Tex("$W = 2^{256}$").next_to(weight_basis_matrix, DOWN)
+
+        self.play(FadeOut(s_expr, eq_1, eq_2, eq_3, eq_4))
+        self.play(basis_matrix.animate.move_to(ORIGIN))
+        self.next_slide()
+
+        self.play(Transform(basis_matrix, weight_basis_matrix))
+        self.play(Write(weight_label))
+        self.next_slide()

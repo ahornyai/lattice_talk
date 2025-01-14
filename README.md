@@ -23,6 +23,12 @@
 - https://github.com/IrisSec/IrisCTF-2025-Challenges/blob/main/knutsacque/README.md
 - https://github.com/FuzzyLitchi/writeups/blob/main/ddc-nationals-2024/hashmaster-9000/hashmaster-9000.md
 
+# Useful tools
+- https://github.com/maple3142/lll_cvp
+- https://github.com/rkm0959/Inequality_Solving_with_CVP
+- https://github.com/defund/coppersmith
+- https://github.com/josephsurin/lattice-based-cryptanalysis
+
 # References
 - https://ur4ndom.dev/static/files/latticetraining/practical_lattice_reductions.pdf
 - https://theblupper.github.io/blog/posts/lattices/
@@ -33,3 +39,4 @@
 - https://www.di.ens.fr/~pnguyen/SLIDES/SlidesLuminy2010.pdf
 - https://magicfrank00.github.io/writeups/posts/lll-to-solve-linear-equations/
 - https://www.youtube.com/watch?v=MhYaVtS6_y4
+- https://github.com/josephsurin/lattice-based-cryptanalysis/blob/main/tutorial.pdf
