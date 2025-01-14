@@ -69,17 +69,63 @@ class SmallLinearSystem(Slide):
             "What's m?"
         ).scale(0.75)
 
-        self.play(irisctf_title.animate.move_to(2*UP))
+        self.play(irisctf_title.animate.move_to(3*UP))
         self.play(LaggedStartMap(FadeIn, irisctf_info, shift=0.5 * DOWN, lag_ratio=0.25))
         self.next_slide()
 
-        quaternion_example = Tex("$a_1 = a + b*i + c*j + d*k$")
-        quat_arrow = Arrow(start=LEFT, end=RIGHT)
-        quat_repr = Matrix(np.array([["a","b","c","d"],["-b","a","-d","c"],["-c","d","a","-b"],["-d","-c","b","a"]])).next_to(quat_arrow, RIGHT)
+        quaternion_example = Tex("$\\mathbf{a_1} = a + b \\cdot i + c \\cdot j + d \\cdot k$").scale(0.8).shift(DOWN)
+        quat_arrow = Arrow(start=LEFT, end=RIGHT).scale(0.8).shift(DOWN)
+        quat_repr = Matrix(np.array([["a","b","c","d"],["-b","a","-d","c"],["-c","d","a","-b"],["-d","-c","b","a"]])).scale(0.8).next_to(quat_arrow, RIGHT)
 
         self.play(FadeOut(irisctf_info))
         self.play(Write(quaternion_example))
-        self.play(quaternion_example.animate.move_to(4*LEFT))
+        self.play(quaternion_example.animate.move_to(4*LEFT + DOWN))
         self.play(GrowArrow(quat_arrow))
         self.play(FadeIn(quat_repr))
         self.next_slide()
+
+        quaternion_flag = Tex("$m_1 = f_0 + f_1 \\cdot i + f_2 \\cdot j + f_3 \\cdot k$").scale(0.8).shift(UP)
+        quat_arrow_2 = Arrow(start=LEFT, end=RIGHT).scale(0.8).shift(UP)
+        quat_repr_2 = Matrix(np.array([["f_0","f_1","f_2","f_3"],["-f_1","f_0","-f_3","f_2"],["-f_2","f_3","f_0","-f_1"],["-f_3","-f_2","f_1","f_0"]])).scale(0.8).next_to(quat_arrow_2, RIGHT)
+
+        self.play(quaternion_example.animate.shift(DOWN), quat_arrow.animate.shift(DOWN), quat_repr.animate.shift(DOWN))
+
+        self.play(Write(quaternion_flag))
+        self.play(quaternion_flag.animate.move_to(4*LEFT + UP))
+        self.play(GrowArrow(quat_arrow_2))
+        self.play(FadeIn(quat_repr_2))
+        self.next_slide()
+
+        result = ImageMobject("assets/quat_multiplication.png").shift(3*DOWN)
+
+        self.play(FadeOut(quaternion_flag, quaternion_example, quat_arrow, quat_arrow_2))
+        self.play(quat_repr.animate.move_to(2.25*RIGHT), quat_repr_2.animate.move_to(2.25*LEFT))
+        self.play(FadeIn(result))
+        self.next_slide()
+
+class IrisCTFSolution(Slide):
+
+    def construct(self):
+        irisctf_title = Text("IrisCTF2025 - knutsacque").move_to(3*UP).set_color(YELLOW)
+        s_expr = Tex("$s = (s_0 + s_1 \\cdot i + s_2 \\cdot j + s_3 \\cdot k)$").scale(0.6)
+        eq_1 = Tex("$m_1 a_{1,1} + m_2 a_{1,2} + \\ldots + m_n a_{1,n} = s_0$").scale(0.75).move_to(1.5*UP)
+        eq_2 = Tex("$m_1 a_{2,1} + m_2 a_{2,2} + \\ldots + m_n a_{2,n} = s_1$").scale(0.75).next_to(eq_1, DOWN)
+        eq_3 = Tex("$m_1 a_{3,1} + m_2 a_{3,2} + \\ldots + m_n a_{3,n} = s_2$").scale(0.75).next_to(eq_2, DOWN)
+        eq_4 = Tex("$m_1 a_{4,1} + m_2 a_{4,2} + \\ldots + m_n a_{4,n} = s_3$").scale(0.75).next_to(eq_3, DOWN)
+
+        self.add(irisctf_title)
+
+        self.play(Write(s_expr))
+        self.play(s_expr.animate.shift(2*UP))
+        self.play(Write(eq_1), Write(eq_2), Write(eq_3), Write(eq_4))
+        self.next_slide()
+
+        basis_matrix = Matrix([
+            ["s_0", "s_1", "s_2", "s_3", "1", "0", "0", "\\dots", "0"],
+            ["-a_{1,1}", "-a_{2,1}", "-a_{3,1}", "-a_{4,1}", "0", "1", "0", "\\dots", "0"],
+            ["-a_{1,2}", "-a_{2,2}", "-a_{3,2}", "-a_{4,2}", "0", "0", "1", "\\dots", "0"],
+            ["\\vdots", "\\vdots", "\\vdots", "\\vdots", "\\vdots", "\\vdots", "\\vdots", "\\ddots", "\\vdots"],
+            ["-a_{1,n}", "-a_{2,n}", "-a_{3,n}", "-a_{4,n}", "0", "0", "0", "\\dots", "1"],
+        ]).scale(0.75).next_to(eq_4, DOWN)
+
+        self.play(FadeIn(basis_matrix))

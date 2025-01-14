@@ -19,6 +19,10 @@
 - part 3. - basics of LWE
   - primal attack on LWE
 
+# CTF Challenges
+- https://github.com/IrisSec/IrisCTF-2025-Challenges/blob/main/knutsacque/README.md
+- https://github.com/FuzzyLitchi/writeups/blob/main/ddc-nationals-2024/hashmaster-9000/hashmaster-9000.md
+
 # References
 - https://ur4ndom.dev/static/files/latticetraining/practical_lattice_reductions.pdf
 - https://theblupper.github.io/blog/posts/lattices/
@@ -28,6 +32,4 @@
 - https://escholarship.org/content/qt4zt7x45z/qt4zt7x45z.pdf?t=ml518a
 - https://www.di.ens.fr/~pnguyen/SLIDES/SlidesLuminy2010.pdf
 - https://magicfrank00.github.io/writeups/posts/lll-to-solve-linear-equations/
-
-# Challenges
-- https://github.com/ECSC2024/openECSC-2024/blob/main/round-2/crypto01/
+- https://www.youtube.com/watch?v=MhYaVtS6_y4
