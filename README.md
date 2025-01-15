@@ -12,10 +12,10 @@
   - LLL in sage
   - solving CVP using LLL
   - common problems
-    - knapsack (example: hashmaster-9000 from ddc-nationals-2024)
-    - ecdsa biased nonce (HNP)
+    - knapsack (hashmaster-9000 from ddc-nationals-2024)
+    - ecdsa biased nonce (HNP, polynonce)
     - RSA with partial info (Coppersmith)
-    - solving underdetermined linear equations (Invention - openECSC 2024 - Round 2)
+    - solving underdetermined linear equations (IrisCTF2025 - knutsacque)
 - part 3. - basics of LWE
   - primal attack on LWE
 
@@ -24,13 +24,14 @@
 - https://github.com/FuzzyLitchi/writeups/blob/main/ddc-nationals-2024/hashmaster-9000/hashmaster-9000.md
 
 # Useful tools
+- https://github.com/josephsurin/lattice-based-cryptanalysis
 - https://github.com/maple3142/lll_cvp
 - https://github.com/rkm0959/Inequality_Solving_with_CVP
 - https://github.com/defund/coppersmith
-- https://github.com/josephsurin/lattice-based-cryptanalysis
+- https://github.com/keeganryan/flatter
 
 # References
-- https://ur4ndom.dev/static/files/latticetraining/practical_lattice_reductions.pdf
+- The content of the presentation is largely based on Robin Jadoul's talk: https://ur4ndom.dev/static/files/latticetraining/practical_lattice_reductions.pdf
 - https://theblupper.github.io/blog/posts/lattices/
 - https://kel.bz/post/lll/
 - https://www.math.elte.hu/thesisupload/thesisfiles/2024bsc_alkmat3y-sl45k6.pdf
@@ -40,3 +41,4 @@
 - https://magicfrank00.github.io/writeups/posts/lll-to-solve-linear-equations/
 - https://www.youtube.com/watch?v=MhYaVtS6_y4
 - https://github.com/josephsurin/lattice-based-cryptanalysis/blob/main/tutorial.pdf
+- https://cims.nyu.edu/~regev/teaching/lattices_fall_2004/ln/cvp.pdf

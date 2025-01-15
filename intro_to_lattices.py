@@ -1,6 +1,8 @@
 from manim import *
 from manim_slides import Slide
 
+from utils import create_arrow_chain
+
 class LatticeDefinition(Slide):
     
     def construct(self):
@@ -68,7 +70,7 @@ class LatticeDefinition(Slide):
         goal_label = Tex("$2\\mathbf{b_1} + 4\\mathbf{b_2}$", color=YELLOW).move_to(2*b1_pos + 4*b2_pos + UP/2)
         goal_label_2 = Tex("$14\\mathbf{b_1} - 10\\mathbf{b_2}$", color=YELLOW).move_to(2*b1_pos + 4*b2_pos + UR/2)
 
-        lll_arrows = self.create_arrow_chain([b1_pos, 2*b1_pos, 2*b1_pos+b2_pos, 2*b1_pos+2*b2_pos, 2*b1_pos+3*b2_pos, 2*b1_pos+4*b2_pos], [RED] + [GREEN]*4)
+        lll_arrows = create_arrow_chain([b1_pos, 2*b1_pos, 2*b1_pos+b2_pos, 2*b1_pos+2*b2_pos, 2*b1_pos+3*b2_pos, 2*b1_pos+4*b2_pos], [RED] + [GREEN]*4)
 
         self.play(FadeOut(parallelogram), Unwrite(parallelogram_text))
         self.play(Create(goal_dot))
@@ -130,7 +132,7 @@ class LatticeDefinition(Slide):
             chain_positions.append((i+3)*b3_pos - 10*b4_pos)
             chain_colors.append(RED)
 
-        long_chain = self.create_arrow_chain(chain_positions, chain_colors)
+        long_chain = create_arrow_chain(chain_positions, chain_colors)
         
         self.play(LaggedStartMap(FadeIn, long_chain, lag_ratio=0.5))
         self.next_slide()
@@ -138,17 +140,6 @@ class LatticeDefinition(Slide):
         # remove lattice points
         self.play(FadeOut(b4), LaggedStartMap(FadeOut, dots, shift=0.5 * DOWN, lag_ratio=0.01))
         self.play(Write(goal_label_2))
-
-    
-    def create_arrow_chain(self, positions, colors):
-        arrows = []
-        prev_point = positions[0]
-
-        for pos, color in zip(positions[1:], colors):
-            arrows.append(Arrow(start=prev_point, end=pos, buff=0).set_color(color))
-            prev_point = pos
-        
-        return arrows
 
 class LatticeProblems(Slide):
 

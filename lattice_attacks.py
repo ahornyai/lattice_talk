@@ -1,6 +1,8 @@
 from manim import *
 from manim_slides import Slide
 
+from utils import create_arrow_chain
+
 class SmallLinearSystem(Slide):
 
     def construct(self):
@@ -53,12 +55,12 @@ class SmallLinearSystem(Slide):
         self.next_slide()
 
         self.play(FadeIn(success_img_1, scale=0.5, lag_ratio=0.1))
-        self.next_slide()
 
+class IrisCTFSolution(Slide):
+
+    def construct(self):
         irisctf_title = Text("IrisCTF2025 - knutsacque").set_color(YELLOW)
 
-        self.play(FadeOut(success_img_1))
-        self.play(FadeOut(B_sym, eq_3_subst))
         self.play(Write(irisctf_title))
         self.next_slide()
 
@@ -103,17 +105,13 @@ class SmallLinearSystem(Slide):
         self.play(FadeIn(result))
         self.next_slide()
 
-class IrisCTFSolution(Slide):
-
-    def construct(self):
-        irisctf_title = Text("IrisCTF2025 - knutsacque").move_to(3*UP).set_color(YELLOW)
+        self.play(FadeOut(result, quat_repr, quat_repr_2))
+    
         s_expr = Tex("$s = (s_0 + s_1 \\cdot i + s_2 \\cdot j + s_3 \\cdot k)$").scale(0.6)
         eq_1 = Tex("$m_1 a_{1,1} + m_2 a_{1,2} + \\ldots + m_n a_{1,n} = s_0$").scale(0.75).move_to(1.5*UP)
         eq_2 = Tex("$m_1 a_{2,1} + m_2 a_{2,2} + \\ldots + m_n a_{2,n} = s_1$").scale(0.75).next_to(eq_1, DOWN)
         eq_3 = Tex("$m_1 a_{3,1} + m_2 a_{3,2} + \\ldots + m_n a_{3,n} = s_2$").scale(0.75).next_to(eq_2, DOWN)
         eq_4 = Tex("$m_1 a_{4,1} + m_2 a_{4,2} + \\ldots + m_n a_{4,n} = s_3$").scale(0.75).next_to(eq_3, DOWN)
-
-        self.add(irisctf_title)
 
         self.play(Write(s_expr))
         self.play(s_expr.animate.shift(2*UP))
@@ -147,4 +145,222 @@ class IrisCTFSolution(Slide):
 
         self.play(Transform(basis_matrix, weight_basis_matrix))
         self.play(Write(weight_label))
+
+class TryDifferentAlgorithms(Slide):
+
+    def construct(self):
+        title = Text("Try different algorithms").set_color(YELLOW).move_to(2*UP)
+
+        bulletpoints = BulletedList(
+            "LLL is fast but inaccurate for larger dimensions",
+            "$\\Rightarrow$ Try BKZ with different block sizes.",
+            "If $\\beta = n \\Rightarrow$ BKZ = HKZ $\\Rightarrow$ exponential time complexity",
+            "https://github.com/keeganryan/flatter"
+        ).scale(0.75).next_to(title, 2*DOWN)
+
+        self.play(Write(title))
+        self.play(LaggedStartMap(FadeIn, bulletpoints, shift=0.5 * DOWN, lag_ratio=0.25))
         self.next_slide()
+
+        change_to_cvp = Text("Change view from SVP to CVP").set_color(YELLOW).move_to(3*UP)
+        babai_title = Text("I. method: Babai's nearest plane algorithm").scale(0.75).next_to(change_to_cvp, DOWN)
+
+        babai_code = Code("assets/babai_impl.py", style="github-dark", insert_line_no=False).scale(0.75)
+        
+        self.play(FadeOut(bulletpoints))
+        self.play(Transform(title, change_to_cvp), Write(babai_title), FadeIn(babai_code))
+        self.next_slide()
+
+        babai_info = BulletedList(
+            "Requires reduced basis",
+            "tldr: Iteratively project each coordinate onto the nearest hyperplane.",
+            "$\\Rightarrow \\frac{\\mathbf{a} \\cdot \\mathbf{g_i}}{\\mathbf{g_i} \\cdot \\mathbf{g_i}}$"
+        ).scale(0.75).next_to(babai_code, DOWN)
+
+        self.play(LaggedStartMap(FadeIn, babai_info, shift=0.5 * DOWN, lag_ratio=0.25))
+        self.next_slide()
+
+class BabaiVisualization(Slide):
+
+    def construct(self):
+        plane = NumberPlane(background_line_style={
+            "stroke_opacity": 0
+        })
+
+        b0_pos = np.array((-0.2, 0.6, 0))
+        b1_pos = np.array((1, 0, 0))
+
+        b0 = Arrow(start=ORIGIN, end=b0_pos, buff=0).set_color(GREEN)
+        b1 = Arrow(start=ORIGIN, end=b1_pos, buff=0).set_color(YELLOW)
+
+        self.play(FadeIn(plane))
+        self.play(GrowArrow(b0), GrowArrow(b1))
+        self.next_slide()
+
+        perfect_goal_pos = 5*b0_pos + 3*b1_pos
+        goal_pos = perfect_goal_pos + np.array((0.3, -0.1, 0)) # small displacement
+        goal_dot = Dot(goal_pos, color=PURE_RED)
+        
+        self.play(Create(goal_dot))
+        self.next_slide()
+
+        # GS ortogonalized vectors
+        g0_pos = np.array((-1/5, 3/5, 0))
+        g1_pos = np.array((9/10, 3/10, 0))
+
+        g0 = Arrow(start=ORIGIN, end=g0_pos, buff=0).set_color(RED)
+        g1 = Arrow(start=ORIGIN, end=g1_pos, buff=0).set_color(RED)
+
+        self.play(GrowArrow(g0), GrowArrow(g1))
+        self.next_slide()
+
+        target_vec = Arrow(start=ORIGIN, end=goal_pos, buff=0).set_color(PINK)
+        
+        self.play(GrowArrow(target_vec))
+        self.next_slide()
+
+        mus = [3.26666666666667, 4.7]
+
+        # step 1: project to g1
+        mu_vec = Arrow(start=ORIGIN, end=g1.get_end() * mus[0], buff=0).set_color(PURPLE)
+        mu_brace = BraceBetweenPoints(ORIGIN, mu_vec.get_end())
+        mu_label = mu_brace.get_text("$c \\cdot \\mathbf{g_1} = " + str(round(mus[0], 2)) + " \\cdot \\mathbf{g_1}$")
+        mu_rounded_label = mu_brace.get_text("$\\lceil c \\rfloor = 3$")
+        
+        projection_vec = Arrow(start=target_vec.get_end(), end=mu_vec.get_end(), buff=0)
+
+        self.play(GrowArrow(mu_vec), FadeIn(mu_brace), Write(mu_label), GrowArrow(projection_vec))
+        self.next_slide()
+
+        self.play(Transform(mu_label, mu_rounded_label))
+        self.next_slide()
+
+        diff_vec = Arrow(start=ORIGIN, end=-3*b1_pos, buff=0).set_color(PURE_RED)
+        diff_brace = BraceBetweenPoints(ORIGIN, diff_vec.get_end(), direction=DOWN)
+        diff_label = diff_brace.get_text("$-3 \\mathbf{b_1}$")
+        diff_pos = -3 * b1_pos
+
+        diff_brace_updater = lambda b: b.become(BraceBetweenPoints(diff_vec.get_start(), diff_vec.get_end(), direction=DOWN))
+        diff_label_updater = lambda b: b.become(diff_brace.get_text("$-3 \\mathbf{b_1}$"))
+
+        self.play(FadeOut(mu_vec, mu_brace, mu_label, projection_vec))
+        self.play(GrowArrow(diff_vec), FadeIn(diff_brace), Write(diff_label))
+        self.next_slide()
+
+        diff_brace.add_updater(diff_brace_updater)
+        diff_label.add_updater(diff_label_updater)
+
+        self.play(diff_vec.animate.put_start_and_end_on(target_vec.get_end(), target_vec.get_end() + diff_pos))
+        self.next_slide()
+
+        self.play(target_vec.animate.put_start_and_end_on(ORIGIN, target_vec.get_end() + diff_pos))
+        self.next_slide()
+
+        diff_brace.clear_updaters()
+        diff_label.clear_updaters()
+
+        self.play(FadeOut(diff_vec, diff_brace, diff_label))
+        self.next_slide()
+
+        # step 2 project to g0 - small code repetition, it is what it is
+        mu_vec = Arrow(start=ORIGIN, end=g0.get_end() * mus[1], buff=0).set_color(PURPLE)
+        mu_brace = BraceBetweenPoints(ORIGIN, mu_vec.get_end())
+        mu_label = mu_brace.get_text("$c \\cdot \\mathbf{g_0} = " + str(round(mus[1], 2)) + " \\cdot \\mathbf{g_0}$")
+        mu_rounded_label = mu_brace.get_text("$\\lceil c \\rfloor = 5$")
+        
+        projection_vec = Arrow(start=target_vec.get_end(), end=mu_vec.get_end(), buff=0)
+
+        self.play(GrowArrow(mu_vec), FadeIn(mu_brace), Write(mu_label), GrowArrow(projection_vec))
+        self.next_slide()
+
+        self.play(Transform(mu_label, mu_rounded_label))
+        self.next_slide()
+
+        diff_vec = Arrow(start=ORIGIN, end=-5*b0_pos, buff=0).set_color(PURE_RED)
+        diff_brace = BraceBetweenPoints(ORIGIN, diff_vec.get_end())
+        diff_label = diff_brace.get_text("$-5 \\mathbf{b_0}$")
+        diff_pos = -5*b0_pos
+
+        diff_brace_updater = lambda b: b.become(BraceBetweenPoints(diff_vec.get_start(), diff_vec.get_end(), direction=DOWN))
+        diff_label_updater = lambda b: b.become(diff_brace.get_text("$-5 \\mathbf{b_0}$"))
+
+        self.play(FadeOut(mu_vec, mu_brace, mu_label, projection_vec))
+        self.play(GrowArrow(diff_vec), FadeIn(diff_brace), Write(diff_label))
+        self.next_slide()
+
+        diff_brace.add_updater(diff_brace_updater)
+        diff_label.add_updater(diff_label_updater)
+
+        self.play(diff_vec.animate.put_start_and_end_on(target_vec.get_end(), target_vec.get_end() + diff_pos))
+        self.next_slide()
+
+        small_vec = Arrow(start=ORIGIN, end=target_vec.get_end() + diff_pos, buff=0)
+
+        diff_brace.clear_updaters()
+        diff_label.clear_updaters()
+
+        self.play(FadeOut(target_vec, diff_vec, diff_brace, diff_label, g0, g1), GrowArrow(small_vec))
+        self.next_slide()
+
+        self.play(small_vec.animate.put_start_and_end_on(start=ORIGIN, end=-(target_vec.get_end() + diff_pos)))
+        self.play(small_vec.animate.put_start_and_end_on(start=goal_pos, end=perfect_goal_pos))
+        self.next_slide()
+
+        original_target_vec = Arrow(start=ORIGIN, end=perfect_goal_pos, buff=0).set_color(ORANGE) 
+
+        self.play(FadeIn(original_target_vec))
+        self.next_slide()
+
+        dots = []
+
+        for i in range(-20, 20):
+            for j in range(-20, 20):
+                dots.append(Dot(i*b0_pos + j*b1_pos))    
+        
+        self.play(LaggedStartMap(FadeIn, dots, shift=0.5 * DOWN, lag_ratio=0.01))
+        self.next_slide()
+
+        # what's the exact linear combination? -> system of equations
+        # M^-1 * v = x
+
+        basis_matrix = Matrix(np.transpose([b0_pos[:2], b1_pos[:2]])).scale(0.8).to_corner(UL).set_color(YELLOW)
+        unknown_label = Tex("$\\mathbf{x}$").scale(0.8).next_to(basis_matrix).set_color(YELLOW)
+        equal_sign = Tex("=").scale(0.8).next_to(unknown_label).set_color(YELLOW)
+        goal_matrix = Matrix(np.transpose([perfect_goal_pos[:2]])).scale(0.8).next_to(equal_sign).set_color(YELLOW)
+
+        self.play(LaggedStartMap(FadeOut, dots, shift=0.5 * DOWN, lag_ratio=0.01))
+        self.play(FadeIn(basis_matrix, unknown_label, goal_matrix, equal_sign))
+        self.next_slide()
+
+        inverse_sign = Tex("-1").scale(0.7).move_to(basis_matrix.get_corner(UR) + 0.1 * UP + 0.2 * RIGHT).set_color(YELLOW)
+
+        self.play(FadeIn(inverse_sign), 
+                  goal_matrix.animate.next_to(basis_matrix, 1.5* RIGHT), 
+                  equal_sign.animate.shift(RIGHT), 
+                  unknown_label.animate.move_to(basis_matrix.get_center() + 3.5*RIGHT))
+        self.next_slide()
+
+        result_matrix = Matrix(np.transpose([["5", "3"]])).scale(0.8).move_to(basis_matrix.get_center() + 3.75*RIGHT).set_color(YELLOW)
+
+        self.play(Transform(unknown_label, result_matrix))
+        self.next_slide()
+    
+        chain_positions = []
+        chain_colors = []
+
+        for i in range(3):
+            chain_positions.append(i * b1_pos)
+            chain_colors.append(YELLOW)
+
+        for i in range(6):
+            chain_positions.append(i * b0_pos + 3 * b1_pos)
+            chain_colors.append(GREEN)
+        
+        arrow_chain = create_arrow_chain(chain_positions, chain_colors)
+
+        self.play(FadeOut(b0))
+        self.play(LaggedStartMap(FadeIn, arrow_chain, lag_ratio=0.5))
+        self.next_slide()
+
+        self.play(FadeOut(basis_matrix, unknown_label, equal_sign, goal_matrix, inverse_sign, original_target_vec, small_vec, result_matrix))
+        self.play(LaggedStartMap(FadeIn, dots, shift=0.5 * DOWN, lag_ratio=0.01))

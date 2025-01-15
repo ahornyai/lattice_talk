@@ -24,7 +24,7 @@ class LLLIntroduction(Slide):
         self.play(Write(working_basis))
         self.next_slide()
 
-        rendered_code = Code("lll_implementation_example.py", style="github-dark", insert_line_no=False).scale(0.7).next_to(title, DOWN)
+        rendered_code = Code("assets/lll_implementation_example.py", style="github-dark", insert_line_no=False).scale(0.7).next_to(title, DOWN)
 
         self.play(FadeOut(basis), FadeOut(gs_basis), FadeOut(working_basis))
         self.play(FadeIn(rendered_code))
@@ -108,7 +108,7 @@ class LLLVisualization(Slide):
 
         mu_vec = Arrow(start=ORIGIN, end=q0.get_end() * mus[0], buff=0).set_color(PURPLE)
         mu_brace = BraceBetweenPoints(ORIGIN, mu_vec.get_end())
-        mu_label = mu_brace.get_text("$\\mu_{1,0} \\cdot \\mathbf{b_1} = " + str(round(mus[0], 2)) + " \\cdot \\mathbf{b_1}$")
+        mu_label = mu_brace.get_text("$\\mu_{1,0} \\cdot \\mathbf{q_0} = " + str(round(mus[0], 2)) + " \\cdot \\mathbf{q_0}$")
         
         projection_vec = Arrow(start=b1.get_end(), end=mu_vec.get_end(), buff=0)
         self.play(GrowArrow(mu_vec), FadeIn(mu_brace), Write(mu_label), GrowArrow(projection_vec))
@@ -121,7 +121,7 @@ class LLLVisualization(Slide):
         current_mu = mus[1]
 
         mu_brace_updater = lambda b: b.become(BraceBetweenPoints(ORIGIN, mu_vec.get_end()))
-        mu_label_updater = lambda b: b.become(mu_brace.get_text("$\\mu_{1,0} \\cdot \\mathbf{b_1} = " + str(round(current_mu, 2)) + " \\cdot \\mathbf{b_1}$"))
+        mu_label_updater = lambda b: b.become(mu_brace.get_text("$\\mu_{1,0} \\cdot \\mathbf{q_0} = " + str(round(current_mu, 2)) + " \\cdot \\mathbf{q_0}$"))
 
         # add updaters
         mu_brace.add_updater(mu_brace_updater)
