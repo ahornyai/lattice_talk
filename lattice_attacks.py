@@ -178,7 +178,6 @@ class TryDifferentAlgorithms(Slide):
         ).scale(0.75).next_to(babai_code, DOWN)
 
         self.play(LaggedStartMap(FadeIn, babai_info, shift=0.5 * DOWN, lag_ratio=0.25))
-        self.next_slide()
 
 class BabaiVisualization(Slide):
 
@@ -363,3 +362,20 @@ class BabaiVisualization(Slide):
 
         self.play(FadeOut(basis_matrix, unknown_label, equal_sign, goal_matrix, inverse_sign, original_target_vec, small_vec, result_matrix))
         self.play(LaggedStartMap(FadeIn, dots, shift=0.5 * DOWN, lag_ratio=0.01))
+
+class KannanEmbedding(Slide):
+
+    def construct(self):
+        title = Text("Change view from SVP to CVP").set_color(YELLOW).move_to(3*UP)
+        subtitle = Text("II. method: Kannan's embedding technique").scale(0.75).next_to(title, DOWN)
+
+        kannan_matrix = Matrix(np.array([["\\mathbf{B}", "0"], ["\\mathbf{t}", "W"]])).scale(0.8).set_color(YELLOW)
+        kannan_info = BulletedList(
+            "Embed a CVP instance into an SVP lattice.",
+            "New short vector will be $(\\mathbf{t} - \\mathbf{B} x, W)$",
+            "W is the weight"
+        ).scale(0.75).next_to(kannan_matrix, DOWN)
+
+        self.play(Write(title), Write(subtitle))
+        self.play(FadeIn(kannan_matrix))
+        self.play(LaggedStartMap(FadeIn, kannan_info, shift=0.5 * DOWN, lag_ratio=0.25))
