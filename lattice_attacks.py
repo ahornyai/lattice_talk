@@ -302,8 +302,7 @@ class BabaiVisualization(Slide):
         self.play(FadeOut(target_vec, diff_vec, diff_brace, diff_label, g0, g1), GrowArrow(small_vec))
         self.next_slide()
 
-        self.play(small_vec.animate.put_start_and_end_on(start=ORIGIN, end=-(target_vec.get_end() + diff_pos)))
-        self.play(small_vec.animate.put_start_and_end_on(start=goal_pos, end=perfect_goal_pos))
+        self.play(small_vec.animate.put_start_and_end_on(start=perfect_goal_pos, end=goal_pos))
         self.next_slide()
 
         original_target_vec = Arrow(start=ORIGIN, end=perfect_goal_pos, buff=0).set_color(ORANGE) 
