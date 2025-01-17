@@ -379,3 +379,4 @@ class KannanEmbedding(Slide):
         self.play(Write(title), Write(subtitle))
         self.play(FadeIn(kannan_matrix))
         self.play(LaggedStartMap(FadeIn, kannan_info, shift=0.5 * DOWN, lag_ratio=0.25))
+

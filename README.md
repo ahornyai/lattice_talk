@@ -29,6 +29,7 @@
 - https://github.com/rkm0959/Inequality_Solving_with_CVP
 - https://github.com/defund/coppersmith
 - https://github.com/keeganryan/flatter
+- https://github.com/google/paranoid_crypto
 
 # References
 - The content of the presentation is largely based on Robin Jadoul's talk: https://ur4ndom.dev/static/files/latticetraining/practical_lattice_reductions.pdf
@@ -42,3 +43,6 @@
 - https://www.youtube.com/watch?v=MhYaVtS6_y4
 - https://github.com/josephsurin/lattice-based-cryptanalysis/blob/main/tutorial.pdf
 - https://cims.nyu.edu/~regev/teaching/lattices_fall_2004/ln/cvp.pdf
+- https://www.chiark.greenend.org.uk/~sgtatham/quasiblog/pq-kem/
+- https://www.vicarius.io/vsociety/posts/understanding-a-critical-vulnerability-in-putty-biased-ecdsa-nonce-generation-revealing-nist-p-521-private-keys-cve-2024-31497
+- https://minerva.crocs.fi.muni.cz/
