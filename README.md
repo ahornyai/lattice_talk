@@ -12,12 +12,14 @@
   - LLL in sage
   - solving CVP using LLL
   - common problems
-    - knapsack (hashmaster-9000 from ddc-nationals-2024)
-    - ecdsa biased nonce (HNP, polynonce)
-    - RSA with partial info (Coppersmith)
     - solving underdetermined linear equations (IrisCTF2025 - knutsacque)
+    - ecdsa biased nonce (HNP, polynonce)
+    - knapsack (hashmaster-9000 from ddc-nationals-2024)
+    - RSA with partial info (Coppersmith)
+    - truncated LCG (randar exploit?)
 - part 3. - basics of LWE
   - primal attack on LWE
+  - some info on FHE
 
 # CTF Challenges
 - https://github.com/IrisSec/IrisCTF-2025-Challenges/blob/main/knutsacque/README.md
