@@ -35,6 +35,7 @@
 
 # References
 - The content of the presentation is largely based on Robin Jadoul's talk: https://ur4ndom.dev/static/files/latticetraining/practical_lattice_reductions.pdf
+- Original explanation and diagrams for RANDAR exploit: https://github.com/spawnmason/randar-explanation
 - https://theblupper.github.io/blog/posts/lattices/
 - https://kel.bz/post/lll/
 - https://www.math.elte.hu/thesisupload/thesisfiles/2024bsc_alkmat3y-sl45k6.pdf

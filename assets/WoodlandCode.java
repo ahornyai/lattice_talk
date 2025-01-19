@@ -25,6 +25,8 @@ protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ) {
 
 // and here's what it calls in World.java:
 public Random setRandomSeed(int seedX, int seedY, int seedZ) {
+    // this.getWorldInfo().getSeed() is the overall seed of the entire map
+    // which has been cracked long ago for 2b2t (it's -4172144997902289642)
     this.rand.setSeed(seedX * 341873128712L + seedY * 132897987541L + seedZ + this.getWorldInfo().getSeed());
-    return this.rand; // this.getWorldInfo().getSeed() is the overall seed of the entire map, which has been cracked long ago for 2b2t (it's -4172144997902289642)
+    return this.rand;
 }
