@@ -48,3 +48,5 @@
 - https://www.chiark.greenend.org.uk/~sgtatham/quasiblog/pq-kem/
 - https://www.vicarius.io/vsociety/posts/understanding-a-critical-vulnerability-in-putty-biased-ecdsa-nonce-generation-revealing-nist-p-521-private-keys-cve-2024-31497
 - https://minerva.crocs.fi.muni.cz/
+- https://static.aminer.org/pdf/PDF/000/570/324/the_two_faces_of_lattices_in_cryptology.pdf
+- https://cr.yp.to/bib/2001/coppersmith.pdf
