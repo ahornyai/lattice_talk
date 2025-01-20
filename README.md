@@ -1,29 +1,27 @@
-# TODO
-- title
-- whoami
-- fahrplan
-- the defition of a lattice
-- motivation
-- part 1. - theory:
+# Overview
+- chapter 1 - theory:
+  - the definition of a lattice
   - problems on lattices (SVP, CVP, approximate versions)
   - LLL algorithm
   - LLL visualization
-- part 2. - practice
-  - LLL in sage
-  - solving CVP using LLL
-  - common problems
+- chapter 2 - practice
+  - lattice attacks / common problems
     - solving underdetermined linear equations (IrisCTF2025 - knutsacque)
+      - introduction to solving CVP
+      - Babai CVP algorithm and visualization
+      - Kannan's embedding
     - ecdsa biased nonce (HNP, polynonce)
     - knapsack (hashmaster-9000 from ddc-nationals-2024)
     - RSA with partial info (Coppersmith)
-    - truncated LCG (randar exploit?)
-- part 3. - basics of LWE
-  - primal attack on LWE
-  - some info on FHE
+    - breaking truncated LCG (randar exploit - Minecraft hacking)
+- chapter 3 - Building encryptions relying on lattice problems
+  - Introduction to LWE
+  - Introduction to FHE
 
 # CTF Challenges
 - https://github.com/IrisSec/IrisCTF-2025-Challenges/blob/main/knutsacque/README.md
 - https://github.com/FuzzyLitchi/writeups/blob/main/ddc-nationals-2024/hashmaster-9000/hashmaster-9000.md
+- ImaginaryCTF - affine padding
 
 # Useful tools
 - https://github.com/josephsurin/lattice-based-cryptanalysis
@@ -52,3 +50,4 @@
 - https://static.aminer.org/pdf/PDF/000/570/324/the_two_faces_of_lattices_in_cryptology.pdf
 - https://cr.yp.to/bib/2001/coppersmith.pdf
 - https://hal.science/hal-03045663/document
+- https://www.jeremykun.com/2024/05/04/fhe-overview/

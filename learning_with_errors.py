@@ -51,3 +51,23 @@ class LWEProblems(Slide):
 
         self.add(title)
         self.play(LaggedStartMap(FadeIn, lwe_problems, shift=0.5 * DOWN, lag_ratio=0.25))
+
+class FHEIntro(Slide):
+
+    def construct(self):
+        title = Text("Fully Homomorphic Encryption", color=YELLOW)
+        basics_of_fhe = BulletedList(
+            "We like encrypted data",
+            "One goal of FHE: doing computation without decrypting data",
+            "D(E(x) + E(y)) = D(E(x)) + D(E(x)) = x + y",
+            "D(E(x) * E(y)) = D(E(x)) * D(E(y)) = x * y",
+            "Bootstrapping",
+            "Leveled homomorphic encryption",
+        ).scale(0.75)
+
+        self.play(Write(title))
+        self.next_slide()
+
+        self.play(title.animate.move_to(3*UP))
+        self.play(LaggedStartMap(FadeIn, basics_of_fhe, shift=0.5 * DOWN, lag_ratio=0.25))
+        self.next_slide()
