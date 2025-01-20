@@ -51,3 +51,4 @@
 - https://minerva.crocs.fi.muni.cz/
 - https://static.aminer.org/pdf/PDF/000/570/324/the_two_faces_of_lattices_in_cryptology.pdf
 - https://cr.yp.to/bib/2001/coppersmith.pdf
+- https://hal.science/hal-03045663/document
