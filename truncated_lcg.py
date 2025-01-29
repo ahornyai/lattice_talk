@@ -8,10 +8,10 @@ class LCGIntroduction(Slide):
         lcg_intro = BulletedList(
             "Used by java.util.Random",
             "$x_{n+1} \\equiv a x_n + b \\ (\\mathrm{mod}\\ c)$",
-            "If m is a power of 2 and $b \\neq 0$",
-            "1. $m$ and $b$ are coprime,",
+            "If $c$ is a power of 2 and $b \\neq 0$",
+            "1. $c$ and $b$ are coprime,",
             "2. $a-1$ is divisible by all prime factors of $b$",
-            "3. $a-1$ is divisible by 4 if $m$ is divisible by 4.",
+            "3. $a-1$ is divisible by 4 if $c$ is divisible by 4.",
             "$\\iff$ period equals to $c$ for all x",
             "reversible, since $x_n \\equiv a^{-1}(x_{n+1} - b) \\ (\\mathrm{mod}\\ c)$",
         dot_scale_factor=0, buff=MED_SMALL_BUFF).scale(0.8) # dots are overrated
@@ -87,7 +87,7 @@ class TruncatedRNGLattice(Slide):
             ["0", "c", "0"],
             ["0", "0", "c"],
         ]).scale(0.9).next_to(x_3_1, 2*DOWN)
-        close_lattice_point = Tex("$(\\lfloor \\tfrac{x_1}{2^{24}} \\rfloor + 2^{23}, \\lfloor \\tfrac{x_2}{2^{24}} \\rfloor + 2^{23} - b, \\lfloor \\tfrac{x_3}{2^{24}} \\rfloor + 2^{23} - ab)$").scale(0.9).next_to(lattice, 2*DOWN)
+        close_lattice_point = Tex("$(\\lfloor \\tfrac{x_1}{2^{24}} \\rfloor + 2^{23}, \\lfloor \\tfrac{x_2}{2^{24}} \\rfloor + 2^{23} - b, \\lfloor \\tfrac{x_3}{2^{24}} \\rfloor + 2^{23} - ab - b)$").scale(0.9).next_to(lattice, 2*DOWN)
 
         self.play(FadeIn(lattice))
         self.play(Write(close_lattice_point))

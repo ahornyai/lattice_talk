@@ -4,17 +4,17 @@
   - problems on lattices (SVP, CVP, approximate versions)
   - LLL algorithm
   - LLL visualization
-- chapter 2 - practice
+- chapter 2 - practice:
   - lattice attacks / common problems
     - solving underdetermined linear equations (IrisCTF2025 - knutsacque)
       - introduction to solving CVP
       - Babai CVP algorithm and visualization
       - Kannan's embedding
-    - ecdsa biased nonce (HNP, polynonce)
+    - ecdsa biased nonce (HNP, polynonce, putty P-521 exploit)
     - knapsack (hashmaster-9000 from ddc-nationals-2024)
-    - RSA with partial info (Coppersmith)
+    - RSA with partial info (Coppersmith, ImaginaryCTF - affine padding)
     - breaking truncated LCG (randar exploit - Minecraft hacking)
-- chapter 3 - Building encryptions relying on lattice problems
+- chapter 3 - Building encryptions relying on lattice problems:
   - Introduction to LWE
   - Introduction to FHE
 
