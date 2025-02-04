@@ -106,6 +106,14 @@ class LatticeDefinition(Slide):
         self.play(GrowArrow(b3), GrowArrow(b4))
         self.next_slide()
 
+        parallelogram = Polygon(
+            ORIGIN, b3_pos, b3_pos + b4_pos, b4_pos,
+            color=BLUE, fill_opacity=0.5
+        )
+
+        self.play(Create(parallelogram))
+        self.next_slide()
+
         # goal = 14*b3 - 10*b4
         chain_positions = []
         chain_colors = []
@@ -134,6 +142,7 @@ class LatticeDefinition(Slide):
 
         long_chain = create_arrow_chain(chain_positions, chain_colors)
         
+        self.play(FadeOut(parallelogram))
         self.play(LaggedStartMap(FadeIn, long_chain, lag_ratio=0.5))
         self.next_slide()
 
@@ -154,10 +163,10 @@ class LatticeProblems(Slide):
         ).scale(0.75).next_to(problems_title, 2*DOWN)
 
         self.play(Write(problems_title))
-        self.play(LaggedStartMap(FadeIn, problems[:2], shift=0.5 * DOWN, lag_ratio=0.25))
+        self.play(LaggedStartMap(FadeIn, problems[:3], shift=0.5 * DOWN, lag_ratio=0.25))
         self.next_slide()
 
-        self.play(LaggedStartMap(FadeIn, problems[2:], shift=0.5 * DOWN, lag_ratio=0.25))
+        self.play(LaggedStartMap(FadeIn, problems[3:], shift=0.5 * DOWN, lag_ratio=0.25))
         self.next_slide()
 
         # why should I learn this?
@@ -207,7 +216,7 @@ class LatticeProblems(Slide):
         self.next_slide()
 
         algorithms_table = MobjectTable([
-            [Tex("LLL (Lenstra-Lenstra-Lovász)"), Tex("Polynomial time, $\\lVert \\mathbf{b_1'} \\rVert \\leq (\\frac{2}{\\sqrt{4\\delta - 1}})^{\\frac{n-1}{2}} \\lambda_1(\\mathcal{L})$")],
+            [Tex("LLL (Lenstra-Lenstra-Lovász)"), Tex("Polynomial time, $\\lVert \\mathbf{b_1'} \\rVert \\leq (\\frac{2}{\\sqrt{4\\delta - 1}})^{n-1} \\lambda_1(\\mathcal{L})$")],
             [Tex("HKZ (Hermite-Korkine-Zolotarev)"), Tex("Exponential time, $\\lVert \\mathbf{b_1'} \\rVert = \\lambda_1(\\mathcal{L})$")],
             [Tex("BKZ"), Tex("Parameterized by block size $\\beta$")]
         ], include_outer_lines=True).scale(0.75).next_to(algorithms_title, 2*DOWN)

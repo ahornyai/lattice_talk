@@ -82,7 +82,7 @@ class BiasedNonceAttackScene(Slide):
 
         k_group.add(k_1, k_2)
 
-        self.play(Write(k_group))
+        self.play(FadeIn(k_group))
 
         self.next_slide()
 

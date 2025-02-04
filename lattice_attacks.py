@@ -7,7 +7,7 @@ class SmallLinearSystem(Slide):
 
     def construct(self):
         eq_sym = Tex("$a_1 \\mathbf{v_1} + a_2 \\mathbf{v_2} + \\ldots + a_n \\mathbf{v_n} = \\mathbf{c}$").set_color(YELLOW)
-        eq_3 = Tex("$a_1 \\mathbf{v_1} + a_2 \\mathbf{v_2} + \\mathbf{v_3} = \\mathbf{c}$").set_color(YELLOW).move_to(2*UP)
+        eq_3 = Tex("$a_1 \\mathbf{v_1} + a_2 \\mathbf{v_2} + a_3 \\mathbf{v_3} = \\mathbf{c}$").set_color(YELLOW).move_to(2*UP)
         eq_3_to_zero = Tex("$\\mathbf{c} - a_1 \\mathbf{v_1} - a_2 \\mathbf{v_2} - a_3 \\mathbf{v_3} = 0$").set_color(YELLOW).move_to(2*UP)
 
         tips = BulletedList(
